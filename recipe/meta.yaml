@@ -1,8 +1,8 @@
 {% set xorg_name = "gccmakedep" %}
 {% set xorg_category = "util" %}
 {% set name = "xorg-" ~ xorg_name %}
-{% set version = "1.0.3" %}
-{% set sha256 = "b275dcf1f7323ed89e8b36f8fbd5da665d8700005f1779fa5b90a1688bbf2ee4" %}
+{% set version = "1.0.4" %}
+{% set sha256 = "5088f98769fb63c326e9b9d2cb7c9f4a630a2801dd1da06971d0829176cf25b6" %}
 {% set am_version = "1.15" %} # keep synchronized with build.sh
 
 package:
@@ -10,12 +10,11 @@ package:
   version: {{ version }}
 
 source:
-  fn: {{ xorg_name }}-{{ version }}.tar.bz2
-  url: https://www.x.org/releases/individual/{{ xorg_category }}/{{ xorg_name }}-{{ version }}.tar.bz2
+  url: https://www.x.org/releases/individual/{{ xorg_category }}/{{ xorg_name }}-{{ version }}.tar.xz
   sha256: {{ sha256 }}
 
 build:
-  number: 1002
+  number: 0
   detect_binary_files_with_prefix: true
 
 requirements:
