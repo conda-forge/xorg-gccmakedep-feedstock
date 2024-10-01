@@ -1,39 +1,37 @@
 {% set xorg_name = "gccmakedep" %}
 {% set xorg_category = "util" %}
 {% set name = "xorg-" ~ xorg_name %}
-{% set version = "1.0.3" %}
-{% set sha256 = "b275dcf1f7323ed89e8b36f8fbd5da665d8700005f1779fa5b90a1688bbf2ee4" %}
-{% set am_version = "1.15" %} # keep synchronized with build.sh
+{% set version = "1.0.4" %}
+{% set sha256 = "5088f98769fb63c326e9b9d2cb7c9f4a630a2801dd1da06971d0829176cf25b6" %}
+{% set am_version = "1.16" %} # keep synchronized with build.sh
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: {{ xorg_name }}-{{ version }}.tar.bz2
-  url: https://www.x.org/releases/individual/{{ xorg_category }}/{{ xorg_name }}-{{ version }}.tar.bz2
+  url: https://www.x.org/releases/individual/{{ xorg_category }}/{{ xorg_name }}-{{ version }}.tar.xz
   sha256: {{ sha256 }}
 
 build:
-  number: 1002
-  detect_binary_files_with_prefix: true
+  number: 0
 
 requirements:
   build:
-    - m2-autoconf  # [win]
+    - m2-autoconf                  # [win]
     - m2-automake{{ am_version }}  # [win]
-    - m2-libtool  # [win]
-    - pkg-config
-    - m2-base  # [win]
-    - make  # [unix]
-    - m2-make  # [win]
-    - {{ compiler('c') }}        # [unix]
-    - {{ stdlib("c") }}          # [unix]
-    - {{ compiler('m2w64_c') }}  # [win]
-    - {{ stdlib("m2w64_c") }}    # [win]
+    - m2-libtool                   # [win]
+    - pkg-config                   # [unix]
+    - m2-pkg-config                # [win]
+    - m2-base                      # [win]
+    - make                         # [unix]
+    - m2-make                      # [win]
+    - {{ compiler("c") }}          # [unix]
+    - {{ stdlib("c") }}            # [unix]
+    - {{ compiler("m2w64_c") }}    # [win]
+    - {{ stdlib("m2w64_c") }}      # [win]
   host:
     - xorg-util-macros
-  run:
 
 test:
   commands:
